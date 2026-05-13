@@ -4,7 +4,6 @@ import { tools } from "../data/content";
 import zohoUrl from "simple-icons/icons/zoho.svg?url";
 import miroUrl from "simple-icons/icons/miro.svg?url";
 import jiraUrl from "simple-icons/icons/jira.svg?url";
-import confluenceUrl from "simple-icons/icons/confluence.svg?url";
 import googlegeminiUrl from "simple-icons/icons/googlegemini.svg?url";
 import microsoft365Url from "../assets/brands/microsoft-365.svg?url";
 import greythrUrl from "../assets/brands/greythr.svg?url";
@@ -34,33 +33,11 @@ const brandSingle = {
   greythr: greythrUrl,
   microsoft365: microsoft365Url,
   miro: miroUrl,
+  "jira-confluence": jiraUrl,
   googlegemini: googlegeminiUrl,
 };
 
 function ToolLogos({ brand }) {
-  if (brand === "jira-confluence") {
-    return (
-      <span className="flex h-full w-full items-center justify-center gap-1 px-0.5">
-        <img
-          src={jiraUrl}
-          alt=""
-          width={20}
-          height={20}
-          className="h-5 w-5 shrink-0 object-contain"
-          decoding="async"
-        />
-        <img
-          src={confluenceUrl}
-          alt=""
-          width={20}
-          height={20}
-          className="h-5 w-5 shrink-0 object-contain"
-          decoding="async"
-        />
-      </span>
-    );
-  }
-
   const src = brandSingle[brand];
   if (!src) return null;
 
@@ -68,12 +45,17 @@ function ToolLogos({ brand }) {
     <img
       src={src}
       alt=""
-      width={24}
-      height={24}
-      className="h-6 w-6 shrink-0 object-contain"
+      width={32}
+      height={32}
+      className="h-8 w-8 shrink-0 object-contain"
       decoding="async"
+      draggable={false}
     />
   );
+}
+
+function iconShellClass(c) {
+  return `flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ring-1 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-1 ${c.bg} ${c.text} ${c.ring}`;
 }
 
 export default function Tools() {
@@ -125,15 +107,15 @@ export default function Tools() {
                   },
                 }}
                 whileHover={{ y: -4 }}
-                className="group flex items-center gap-3 rounded-2xl border border-ink-900/[0.06] bg-white p-4 shadow-[0_8px_24px_-16px_rgba(30,58,100,0.18)] transition-all duration-500 hover:shadow-[0_16px_36px_-22px_rgba(30,58,100,0.25)]"
+                className="group flex min-w-0 items-center gap-3 rounded-2xl border border-ink-900/[0.06] bg-white p-4 shadow-[0_8px_24px_-16px_rgba(30,58,100,0.18)] transition-all duration-500 hover:shadow-[0_16px_36px_-22px_rgba(30,58,100,0.25)]"
               >
                 <span
-                  className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${c.bg} ${c.text} ring-1 ${c.ring} transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}
+                  className={iconShellClass(c)}
                   aria-hidden
                 >
                   <ToolLogos brand={brand} />
                 </span>
-                <span className="font-serif text-base font-semibold text-ink-900">
+                <span className="min-w-0 flex-1 font-serif text-base font-semibold leading-snug text-ink-900">
                   {name}
                 </span>
               </motion.div>

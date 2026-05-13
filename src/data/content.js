@@ -137,29 +137,13 @@ export const education = [
     school: "Chandigarh University",
     degree: "Master of Business Administration",
     period: "2021 - 2023",
-    desc: "Specialized in HR Management and Business Strategy",
+    desc: "Gharuan, Punjab",
   },
   {
     school: "SRM Institute of Science and Technology",
     degree: "Bachelor of Technology",
     period: "2015 - 2019",
-    desc: "Engineering foundation with analytical problem-solving skills",
-  },
-];
-
-export const certifications = [
-  { name: "HR Foundations", issuer: "CIPD & LinkedIn" },
-  {
-    name: "Advancing Your Skills as an HR Business Partner",
-    issuer: "LinkedIn",
-  },
-  {
-    name: "Leading: Human Resource Management and Leadership",
-    issuer: "Macquarie University",
-  },
-  {
-    name: "Public Speaking Skills Professional Certificate",
-    issuer: "Toastmasters International",
+    desc: "Kattankulathur, Tamilnadu",
   },
 ];
 
