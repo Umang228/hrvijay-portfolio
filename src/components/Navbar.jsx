@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navLinks, profile } from "../data/content";
+import { navLinks } from "../data/content";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,7 +35,7 @@ export default function Navbar() {
           href="#top"
           className="font-serif text-lg sm:text-xl font-bold text-ink-900 tracking-tight"
         >
-          {profile.name}
+          Portfolio
         </a>
 
         <ul className="hidden md:flex items-center gap-9">

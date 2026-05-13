@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
 import { Wrench } from "lucide-react";
 import { tools } from "../data/content";
+import zohoUrl from "simple-icons/icons/zoho.svg?url";
+import miroUrl from "simple-icons/icons/miro.svg?url";
+import jiraUrl from "simple-icons/icons/jira.svg?url";
+import confluenceUrl from "simple-icons/icons/confluence.svg?url";
+import googlegeminiUrl from "simple-icons/icons/googlegemini.svg?url";
+import microsoft365Url from "../assets/brands/microsoft-365.svg?url";
+import greythrUrl from "../assets/brands/greythr.svg?url";
 
 const easeOut = [0.22, 1, 0.36, 1];
 
@@ -21,6 +28,53 @@ const colorMap = {
     ring: "ring-emerald-200/70",
   },
 };
+
+const brandSingle = {
+  zoho: zohoUrl,
+  greythr: greythrUrl,
+  microsoft365: microsoft365Url,
+  miro: miroUrl,
+  googlegemini: googlegeminiUrl,
+};
+
+function ToolLogos({ brand }) {
+  if (brand === "jira-confluence") {
+    return (
+      <span className="flex h-full w-full items-center justify-center gap-1 px-0.5">
+        <img
+          src={jiraUrl}
+          alt=""
+          width={20}
+          height={20}
+          className="h-5 w-5 shrink-0 object-contain"
+          decoding="async"
+        />
+        <img
+          src={confluenceUrl}
+          alt=""
+          width={20}
+          height={20}
+          className="h-5 w-5 shrink-0 object-contain"
+          decoding="async"
+        />
+      </span>
+    );
+  }
+
+  const src = brandSingle[brand];
+  if (!src) return null;
+
+  return (
+    <img
+      src={src}
+      alt=""
+      width={24}
+      height={24}
+      className="h-6 w-6 shrink-0 object-contain"
+      decoding="async"
+    />
+  );
+}
 
 export default function Tools() {
   return (
@@ -55,9 +109,9 @@ export default function Tools() {
             hidden: {},
             show: { transition: { staggerChildren: 0.05 } },
           }}
-          className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+          className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {tools.map(({ name, Icon, color }) => {
+          {tools.map(({ name, brand, color }) => {
             const c = colorMap[color] ?? colorMap.blue;
             return (
               <motion.div
@@ -75,8 +129,9 @@ export default function Tools() {
               >
                 <span
                   className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${c.bg} ${c.text} ring-1 ${c.ring} transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}
+                  aria-hidden
                 >
-                  <Icon size={18} strokeWidth={2} />
+                  <ToolLogos brand={brand} />
                 </span>
                 <span className="font-serif text-base font-semibold text-ink-900">
                   {name}

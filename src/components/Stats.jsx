@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
-
-const stats = [
-  { value: "3+", label: "Years Experience" },
-  { value: "50+", label: "Roles Closed" },
-  { value: "75%", label: "Payroll Time Saved" },
-  { value: "82", label: "Engagement Score" },
-];
+import { stats } from "../data/content";
 
 export default function Stats() {
   return (
@@ -23,7 +17,7 @@ export default function Stats() {
         >
           {stats.map((s) => (
             <motion.div
-              key={s.label}
+              key={s.title}
               variants={{
                 hidden: { opacity: 0, y: 16 },
                 show: {
@@ -32,13 +26,18 @@ export default function Stats() {
                   transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
                 },
               }}
-              className="min-w-[110px] text-left"
+              className="min-w-[110px] max-w-[220px] text-left"
             >
               <dt className="font-serif text-4xl sm:text-5xl font-bold leading-none text-ink-900">
                 {s.value}
               </dt>
-              <dd className="mt-3 text-xs sm:text-sm text-ink-700 leading-snug">
-                {s.label}
+              <dd className="mt-3 space-y-1">
+                <p className="text-xs sm:text-sm font-semibold text-ink-900 leading-snug">
+                  {s.title}
+                </p>
+                <p className="text-[11px] sm:text-xs text-ink-600 leading-snug">
+                  {s.subtitle}
+                </p>
               </dd>
             </motion.div>
           ))}

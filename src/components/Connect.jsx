@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, ArrowUpRight, Calendar } from "lucide-react";
+import { Mail, MapPin, Phone, User, ArrowUpRight, Calendar } from "lucide-react";
 import { profile } from "../data/content";
 
 const easeOut = [0.22, 1, 0.36, 1];
+
+function telHref(phone) {
+  const digits = phone.replace(/\D/g, "");
+  return digits.startsWith("91") ? `tel:+${digits}` : `tel:+91${digits}`;
+}
 
 function LinkedInIcon({ size = 18, className = "" }) {
   return (
@@ -22,10 +27,15 @@ function LinkedInIcon({ size = 18, className = "" }) {
 
 const contacts = [
   {
+    Icon: User,
+    label: "Name",
+    value: profile.name,
+  },
+  {
     Icon: Phone,
-    label: "Phone",
+    label: "Contact number",
     value: profile.phone,
-    href: `tel:${profile.phone.replace(/\s/g, "")}`,
+    href: telHref(profile.phone),
   },
   {
     Icon: Mail,
@@ -51,7 +61,6 @@ export default function Connect() {
     <section id="connect" className="relative py-20 sm:py-24">
       <div className="container-page">
         <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          {/* LEFT — heading + contact items */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,18 +72,30 @@ export default function Connect() {
               Get in Touch
             </span>
 
-            <h2 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-ink-900 tracking-tight leading-[1.05]">
-              Let's{" "}
+            <h2 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-ink-900 tracking-tight leading-[1.08]">
+              Let&apos;s Have a{" "}
               <span className="italic font-semibold text-navy-700">
-                Connect
+                Real Conversation :)
               </span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-base text-ink-700 leading-relaxed">
-              Open to opportunities and collaborations in HR leadership, people
-              operations, and talent strategy. Let's discuss how I can
-              contribute to your organization's growth.
-            </p>
+            <div className="mt-6 max-w-xl space-y-4 text-base text-ink-700 leading-relaxed">
+              <p>
+                I am not looking to send a resume into a void. I am looking to
+                talk to people who are building something and need HR to work
+                properly—whether that is setting up a function from scratch,
+                fixing retention problems, or finding an HRBP who will actually
+                show up for managers and employees.
+              </p>
+              <p>
+                If any of that sounds like what you need, send me a message. I
+                respond to everyone.
+              </p>
+              <p>
+                Best way to reach me is through the contact details here or
+                directly on LinkedIn.
+              </p>
+            </div>
 
             <motion.ul
               initial="hidden"
@@ -83,7 +104,7 @@ export default function Connect() {
               variants={{
                 hidden: {},
                 show: {
-                  transition: { staggerChildren: 0.08, delayChildren: 0.2 },
+                  transition: { staggerChildren: 0.08, delayChildren: 0.15 },
                 },
               }}
               className="mt-10 space-y-5"
@@ -94,7 +115,6 @@ export default function Connect() {
             </motion.ul>
           </motion.div>
 
-          {/* RIGHT — intro slot card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -107,15 +127,16 @@ export default function Connect() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-70" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-              Currently open to new conversations
+              I respond to everyone
             </span>
 
             <p className="mt-5 font-serif text-2xl sm:text-3xl font-bold text-ink-900">
-              Have a 20-minute window?
+              What I&apos;m open to
             </p>
             <p className="mt-3 text-sm text-ink-600 leading-relaxed">
-              I keep a few intro slots open every week to chat about people
-              strategy, leadership, and culture.
+              Currently open to full-time HR roles, HRBP and HR Operations
+              positions, and short-term consulting work around HR system setup
+              and compliance frameworks.
             </p>
 
             <a
@@ -128,7 +149,7 @@ export default function Connect() {
               className="group mt-7 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[rgba(26,58,92,0.35)_0px_8px_24px]"
             >
               <Calendar size={15} />
-              Book an intro
+              Send me a message
               <ArrowUpRight
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -166,7 +187,7 @@ function ContactItem({ Icon, label, value, href }) {
         </span>
         <div className="min-w-0">
           <p className="text-xs font-medium text-sky-700">{label}</p>
-          <p className="mt-0.5 text-base font-semibold text-ink-900 truncate">
+          <p className="mt-0.5 text-base font-semibold text-ink-900 break-words">
             {value}
           </p>
         </div>
