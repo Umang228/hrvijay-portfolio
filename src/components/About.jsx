@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import profilePhoto from "../assets/profile.jpg";
+import profilePhoto from "../assets/profile.jpeg";
 import { fadeUp, stagger } from "./Section";
 
 export default function About() {
